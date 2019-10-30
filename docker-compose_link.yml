@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+  mariadb:
+    container_name: dj-mariadb
+    image: mariadb
+    # restart: always
+
+    expose:
+      - "3306"
+    ports:
+      - "13306:3306"
+    volumes:
+      - "./data/mysql:/var/lib/mysql"
+    environment:
+     - MYSQL_DATABASE=domjudge
+     - MYSQL_ROOT_PASSWORD=rootpw
+     - MYSQL_USER=domjudge
+     - MYSQL_PASSWORD=djpw
+     # TODO: deal with the max-connection
+
+  domserver:
+    container_name: domserver
+    hostname: domserver
+    image: domjudge/domserver:latest
+    # restart: always
+    depends_on:
+     - mariadb
+
+    ports:
+     - "80:80"
+    environment:
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - MYSQL_HOST=mariadb
+     - MYSQL_DATABASE=domjudge
+     - MYSQL_ROOT_PASSWORD=rootpw
+     - MYSQL_USER=domjudge
+     - MYSQL_PASSWORD=djpw
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    links:
+     - mariadb:dj-mariadb
+
+  host0:
+    container_name: judgedaemon-0
+    hostname: judgedaemon-0
+    image: domjudge/judgehost:latest
+    # restart: always
+    privileged: true
+    depends_on:
+     - domserver
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=0
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://domserver/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+    links:
+     - domserver:domserver

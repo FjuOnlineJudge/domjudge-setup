@@ -1,0 +1,16 @@
+  judger{ID}:
+    container_name: judgedaemon-{name}-{ID}
+    hostname: judgedaemon-{name}
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID={ID}
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://{HOST}/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+

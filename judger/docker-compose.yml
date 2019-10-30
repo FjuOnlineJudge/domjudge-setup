@@ -1,0 +1,131 @@
+version: "3.5"
+
+services:
+  judger0:
+    container_name: judgedaemon-esxi-0
+    hostname: judgedaemon-esxi
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=0
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://140.136.150.67/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+
+  judger1:
+    container_name: judgedaemon-esxi-1
+    hostname: judgedaemon-esxi
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=1
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://140.136.150.67/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+
+  judger2:
+    container_name: judgedaemon-esxi-2
+    hostname: judgedaemon-esxi
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=2
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://140.136.150.67/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+
+  judger3:
+    container_name: judgedaemon-esxi-3
+    hostname: judgedaemon-esxi
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=3
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://140.136.150.67/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+
+  judger4:
+    container_name: judgedaemon-esxi-4
+    hostname: judgedaemon-esxi
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=4
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://140.136.150.67/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+
+  judger5:
+    container_name: judgedaemon-esxi-5
+    hostname: judgedaemon-esxi
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=5
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://140.136.150.67/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+
+  judger6:
+    container_name: judgedaemon-esxi-6
+    hostname: judgedaemon-esxi
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=6
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://140.136.150.67/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+
+  judger7:
+    container_name: judgedaemon-esxi-7
+    hostname: judgedaemon-esxi
+    image: domjudge/judgehost:latest
+    restart: always
+    privileged: true
+
+    volumes:
+     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    environment:
+     - DAEMON_ID=7
+     - CONTAINER_TIMEZONE=Asia/Taipei
+     - DOMSERVER_BASEURL=http://140.136.150.67/
+     - JUDGEDAEMON_USERNAME=judgehost
+     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+
