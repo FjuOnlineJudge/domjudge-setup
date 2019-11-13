@@ -40,19 +40,34 @@ def create_new_user(username, passwd, name=None, email=None):
 	sql = text('INSERT INTO userrole (userid, roleid) VALUES (:uid, :rid);')
 	res = db.session.execute(sql, {'uid': userid, 'rid': 3}) # normal user (looking for the docs)
 
+	# db.session.commit()
+	return {'uid': userid, 'tid': teamid}
+
+def add_team_to_contest(tid, cid):
+	sql = text('INSERT INTO contestteam (cid, teamid) VALUES (:cid, :tid)')
+	res = db.session.execute(sql, {'cid': cid, 'tid': tid})
+	if not res: # TODO(roy4801): ugly
+		print(db.error)
+		return False
 	db.session.commit()
+	return True
 
 def add_user_to_contest(uid, cid):
 	tid = db.session.execute('SELECT teamid from user WHERE userid=:uid', {'uid':uid}).first()
-	cid = db.session.execute('SELECT cid from contest WHERE cid=:cid', {'cid': cid}).first()
-	if not tid or not cid:
+	if not tid:
+		print('[*] tid is null in utils.add_user_to_contest')
 		return
 	tid = tid[0] # extract from tuple
-	cid = cid[0]
 	# Insert a contest team
-	sql = text('INSERT INTO contestteam (cid, teamid) VALUES (:cid, :tid)')
-	db.session.execute(sql, {'cid': cid, 'tid': tid})
-	db.session.commit()
+	return add_team_to_contest(tid, cid)
+
+def get_contest_list():
+	sql = text('SELECT cid, name FROM contest')
+	res = db.session.execute(sql)
+	if res.returns_rows:
+		li = res.fetchall()
+	# print(li)
+	return li
 
 # TODO(roy4801): complete the functionality
 def delete_all_imported_users():
@@ -66,6 +81,9 @@ def delete_all_imported_users():
 		del_contestteam = text('DELETE FROM contestteam WHERE teamid=:tid')
 		db.session.execute(del_team, {'tid': tid})
 		db.session.execute(del_contestteam, {'tid': tid})
+	def del_contestteam(tid):
+		del_ctt = text('DELETE FROM contestteam WHERE teamid=:tid')
+		db.session.execute(delctt, {'tid', tid})
 	def del_import_users():
 		del_import = text('DELETE FROM import_users')
 		db.session.execute(del_import)
@@ -77,5 +95,6 @@ def delete_all_imported_users():
 		print(uid, tid)
 		del_user(uid)
 		del_team(tid)
+		del_contestteam(tid)
 		del_import_users()
-	db.session.commit()
+	# db.session.commit()

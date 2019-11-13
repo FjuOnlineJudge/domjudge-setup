@@ -17,16 +17,18 @@
         <div class="row">
         <h2>Import users</h2>
         </div>
-        <form>
+        <form method="POST" action="/">
           <div class="form-group">
             <label for="contest">Contest:</label>
             <select name="contest" id="contest" class="form-control">
-              <option value="1">Week1</option>
+              {% for cid, name in contests %}
+                <option value="{{ cid }}">{{ name }}</option>
+              {% endfor %}
             </select>
           </div>
           <div class="form-group">
-            <label for="comment">Users: </label><p>格式： <code>team17,406262515</code> （多行即多筆 user）</p>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
+            <label for="users">Users: </label><p>格式： <code>team17,406262515</code> （多行即多筆 user）</p>
+            <textarea class="form-control" rows="5" id="users" name="users">{{ text }}</textarea>
           </div>
           <div class="form-group"><div class="custom-file">
             <input disabled type="file" class="custom-file-input" id="customFile">
@@ -43,9 +45,9 @@
       <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10">
-        <form>
+        <form method="POST">
           <div class="form-group">
-            <button type="button" class="btn btn-danger">DELETE All imported users</button>
+            <button type="submit" class="btn btn-danger" name="delete">DELETE All imported users</button>
           </div>
         </form>
       </div>
