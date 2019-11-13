@@ -1,42 +1,66 @@
 <!doctype html>
 <html lang="en">
   <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>Import to Domjudge</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Import to Domjudge</title>
   </head>
   <body>
     <div class="container">
-    <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
       <div class="row">
-      <h2>Import a user</h2>
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row">
+        <h2>Import users</h2>
+        </div>
+        <form>
+          <div class="form-group">
+            <label for="contest">Contest:</label>
+            <select name="contest" id="contest" class="form-control">
+              <option value="1">Week1</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="comment">Users: </label><p>格式： <code>team17,406262515</code> （多行即多筆 user）</p>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+          <div class="form-group"><div class="custom-file">
+            <input disabled type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+          </div></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Import</button>
+          </div>
+        </form>
       </div>
-      <form class="form-inline" role="form" action="/user" method="post">
-        <div class="form-group">
-          <label for="nameInput">name:</label>
-          <input class="form-control" name="name" id="nameInput" type="text"/>
-        </div>
-        <div class="form-group">
-          <label for="passInput">password:</label>
-          <input class="form-control" name="password" id="passInput" type="text"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      <div class="col-md-1"></div>
+      </div>
+    
+      <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <form>
+          <div class="form-group">
+            <button type="button" class="btn btn-danger">DELETE All imported users</button>
+          </div>
+        </form>
+      </div>
+      </div>
+      <div class="col-md-1"></div>
     </div>
-    <div class="col-md-1"></div>
-    </div>
-    </div>
-
-    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function () {
+        bsCustomFileInput.init()
+      })
+    </script>
   </body>
 </html>
