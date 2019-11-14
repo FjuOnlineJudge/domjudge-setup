@@ -24,6 +24,8 @@ def split_from_csv(content):
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	contests = utils.get_contest_list()
+	users = ''
+	#
 	if request.method == 'POST':
 		contest = request.form['contest'] if 'contest' in request.form else None
 		users = request.form['users'] if 'users' in request.form else None
@@ -31,7 +33,7 @@ def index():
 		print(contest, users, del_flag)
 		if del_flag:
 			utils.delete_all_imported_users()
-			return render_template('index.html', contests=contests)
+			return render_template('index.html', contests=contests, text=users)
 
 		user_list = split_from_csv(users)
 		# Create the users
@@ -40,9 +42,8 @@ def index():
 			res = utils.create_new_user(i[0], i[1]) # username, password
 			if res['uid'] and res['tid']:
 				cnt += 1
-
-	return render_template('index.html', contests=contests, selected=contest, text=users)
-
+	return render_template('index.html', contests=contests, text=users)
+	# TODO(roy4801): store selected state (, selected=contest)
 @app.route('/test')
 def test():
 	s = None
