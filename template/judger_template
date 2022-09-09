@@ -1,6 +1,6 @@
-  judger{ID}:
-    container_name: judgedaemon-{name}-{ID}
-    hostname: judgedaemon-{name}
+  host{ID}:
+    container_name: judgedaemon-{ID}
+    hostname: judgedaemon
     image: domjudge/judgehost:latest
     restart: always
     privileged: true
@@ -12,5 +12,5 @@
      - CONTAINER_TIMEZONE=Asia/Taipei
      - DOMSERVER_BASEURL=http://{HOST}/
      - JUDGEDAEMON_USERNAME=judgehost
-     - JUDGEDAEMON_PASSWORD=DM72EfifNv
+     - JUDGEDAEMON_PASSWORD={PASSWD}
 

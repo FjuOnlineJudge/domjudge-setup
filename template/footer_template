@@ -1,0 +1,5 @@
+networks:
+  server_db:
+  server_judger:
+  judger-net:
+    name: judger_network
