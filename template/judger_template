@@ -4,6 +4,8 @@
     image: domjudge/judgehost:latest
     restart: always
     privileged: true
+    depends_on:
+     - domserver
 
     volumes:
      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
@@ -13,4 +15,6 @@
      - DOMSERVER_BASEURL=http://{HOST}/
      - JUDGEDAEMON_USERNAME=judgehost
      - JUDGEDAEMON_PASSWORD={PASSWD}
+    networks:
+      - server_judger
 

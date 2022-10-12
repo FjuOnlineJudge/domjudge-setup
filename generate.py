@@ -14,7 +14,7 @@ footer = None
 outputFile = 'docker-compose.yml'
 hostname = 'domserver'
 judgerCount = args.judgehost
-judgerPasswd = ''.join(random.choice(string.ascii_letters) for _ in range(8))
+judgerPasswd = ''.join(random.choice(string.ascii_letters) for _ in range(17))
 
 def set_judger(idx):
 	return judgerConfig.replace('{ID}', f"{idx}") \
