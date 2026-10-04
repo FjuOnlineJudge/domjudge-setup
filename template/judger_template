@@ -4,11 +4,12 @@
     image: domjudge/judgehost:latest
     restart: always
     privileged: true
+    cgroup: host
     depends_on:
      - domserver
 
     volumes:
-     - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+     - "/sys/fs/cgroup:/sys/fs/cgroup"
     environment:
      - DAEMON_ID={ID}
      - CONTAINER_TIMEZONE=Asia/Taipei
